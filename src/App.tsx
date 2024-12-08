@@ -39,7 +39,7 @@ function App() {
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
+      <GridItem area="main" paddingX={5}>
         <Flex marginBottom={2}>
           <Box marginRight={5}>
             <PlatformSelector
