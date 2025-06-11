@@ -8,7 +8,6 @@ interface GameQuery {
   rating_top?: number;
 }
 
-
 interface GameQueryStore{
     gameQuery: GameQuery;
     setSearchText: (searchText: string) => void;
@@ -16,7 +15,6 @@ interface GameQueryStore{
     setPlatformId: (platformId: number) => void;
     setSortOrder: (sortOrder: string) => void;
 }
-
 
 const useGameQuerySore = create<GameQueryStore>(set => ({
     gameQuery: {},
