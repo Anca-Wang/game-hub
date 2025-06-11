@@ -5,7 +5,7 @@ import GameDetailPage from "./pages/GameDetailPage";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: 'https://game-hub-seven-peach.vercel.app/',
         element: <Layout />,
         children: [
             {index: true, element: <HomePage />},
