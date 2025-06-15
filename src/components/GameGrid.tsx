@@ -12,7 +12,10 @@ const GameGrid = () => {
 
   if (error) return <Text>{error.message}</Text>;
 
-  const fetchedGamesCount = data?.pages.reduce((total, page) => total + page.results.length, 0)
+  const fetchedGamesCount = data?.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
     <>
@@ -21,35 +24,38 @@ const GameGrid = () => {
         next={fetchNextPage}
         hasMore={!!hasNextPage}
         loader={<Text>Loading...</Text>}
+      >
+        <SimpleGrid
+          columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+          spacing={5}
+          paddingY={3}
+          overflow="visible"
+          justifyItems="center"
+          mx="auto"
         >
-          <SimpleGrid
-            columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-            spacing={5}
-            paddingY={3}
-          >
-            {isLoading &&
-              skeletons.map((skeleton) => (
-                <GameCardContainer key={skeleton}>
-                  <GameCardSkeleton />
-                </GameCardContainer>
+          {isLoading &&
+            skeletons.map((skeleton) => (
+              <GameCardContainer key={skeleton}>
+                <GameCardSkeleton />
+              </GameCardContainer>
             ))}
 
-            {data?.pages.map((page, index) => (
-              <React.Fragment key={index}>
-                {page.results.map(game => (
-                  <GameCardContainer key={game.id}>
-                    <GameCard game={game} />
-                  </GameCardContainer>
-                ))}
-              </React.Fragment>
+          {data?.pages.map((page, index) => (
+            <React.Fragment key={index}>
+              {page.results.map((game) => (
+                <GameCardContainer key={game.id}>
+                  <GameCard game={game} />
+                </GameCardContainer>
+              ))}
+            </React.Fragment>
           ))}
-          </SimpleGrid>
-          {/* Load More Button */}
-            {/* {hasNextPage && 
+        </SimpleGrid>
+        {/* Load More Button */}
+        {/* {hasNextPage && 
               <Button onClick={() => fetchNextPage()} marginY={5}>
                 {isFetchingNextPage ? 'Loading...' : 'Load More'}
               </Button>} */}
-      </InfiniteScroll>    
+      </InfiniteScroll>
     </>
   );
 };
