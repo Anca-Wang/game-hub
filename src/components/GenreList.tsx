@@ -15,8 +15,8 @@ import useGameQueryStore from "@/store";
 const GenreList = () => {
   const { data, isLoading, error } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6];
-  const selectedGenreId = useGameQueryStore(s => s.gameQuery.genreId)
-  const setSelectedGenreId = useGameQueryStore (s => s.setGenreId)
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
 
   if (error) return null;
 
@@ -34,7 +34,7 @@ const GenreList = () => {
               <GenreSkeleton />
             </Box>
           ))}
-        {data?.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
